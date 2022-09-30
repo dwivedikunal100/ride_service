@@ -14,4 +14,18 @@ public class PlayerScore {
         this.playerName = list[0];
         this.score = Integer.parseInt(list[1]);
     }
+
+    public String getPlayerName(){
+        return this.playerName;
+    }
+
+    public int getScore(){
+        return  this.score;
+    }
+
+
+    public String toString(){
+        return playerName+","+score;
+    }
+
 }
