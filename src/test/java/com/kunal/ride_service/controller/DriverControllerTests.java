@@ -9,32 +9,32 @@ import java.util.HashMap;
 @SpringBootTest
 public class DriverControllerTests {
 
+    static HashMap<String, String> driverParams;
     private DriverController driverController;
-    static HashMap<String,String> driverParams;
 
-    public DriverControllerTests(){
+    public DriverControllerTests() {
         driverController = new DriverController();
         driverParams = new HashMap<>();
-        driverParams.put(Constants.driverId,"A");
-        driverParams.put(Constants.x_coordinate,"0");
-        driverParams.put(Constants.y_coordinate,"0");
-        driverParams.put(Constants.cabType,"Sedan");
+        driverParams.put(Constants.driverId, "A");
+        driverParams.put(Constants.x_coordinate, "0");
+        driverParams.put(Constants.y_coordinate, "0");
+        driverParams.put(Constants.cabType, "Sedan");
     }
 
     @Test
-    public void driverSuccessfullyCreatedTest(){
-        assert(driverController.create(driverParams).getBody().equals("Driver successfully created"));
+    public void driverSuccessfullyCreatedTest() {
+        assert (driverController.create(driverParams).getBody().equals("Driver successfully created"));
     }
 
     @Test
-    public void userDuplicateCreatedTest(){
+    public void userDuplicateCreatedTest() {
         driverController.create(driverParams);
-        assert(driverController.create(driverParams).getBody().equals("Driver already exists"));
+        assert (driverController.create(driverParams).getBody().equals("Driver already exists"));
     }
 
     @Test
-    public void userDoesNotExistsTest(){
-        assert(driverController.history(driverParams).getBody().equals("Driver does not exists"));
+    public void userDoesNotExistsTest() {
+        assert (driverController.history(driverParams).getBody().equals("Driver does not exists"));
     }
 
 }
