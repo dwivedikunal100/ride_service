@@ -8,15 +8,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.logging.Logger;
+
 @RestController
 @RequestMapping("/score")
 public class ScoreController {
 
     private ScoreDao scoreDao;
     private ScoreProcessor scoreProcessor;
+    private final Logger logger = Logger.getLogger("ScoreController");
 
     @PostMapping(value = "/getTop5Scores")
     public ResponseEntity<String> getTop5Scores() {
+        logger.info("Get Top 5 Scores API called");
         try {
             return ResponseEntity.ok(scoreProcessor.getTop5Scores().toString());
         } catch (PlayerAlreadyExistsException playerAlreadyExistsException) {

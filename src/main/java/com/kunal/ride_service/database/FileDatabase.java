@@ -1,21 +1,39 @@
 package com.kunal.ride_service.database;
 
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import com.kunal.ride_service.Constants;
+
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class FileDatabase {
 
-    private InputStreamReader inputStreamReader;
-    private OutputStreamWriter outputStreamWriter;
+    private BufferedReader bufferedReader;
+
+    private final Logger logger = Logger.getLogger("FileDatabase");
+
+    public FileDatabase() throws IOException {
+        bufferedReader = new BufferedReader(new InputStreamReader(Files.newInputStream(Paths.get(Constants.fileName))));
+    }
 
 
-    public void getAllScores(final List<String> list) {
+    public List<String> getAllScores() {
         try {
-            inputStreamReader.close();
+            List<String> scores = new ArrayList<>();
+            String str;
+            while ((str=bufferedReader.readLine())!=null){
+                scores.add(str);
+            }
+            return scores;
         } catch (Exception e) {
-
+            logger.severe("Error while reading file");
         }
+        return Collections.emptyList();
     }
 
 
