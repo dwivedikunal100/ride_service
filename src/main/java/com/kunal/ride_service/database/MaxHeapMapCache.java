@@ -50,12 +50,12 @@ public class MaxHeapMapCache {
         }
     }
 
-    public List<PlayerScore> getTopKScores(int K){
-        K = Math.min(K,size);
+    public List<PlayerScore> getTopKScores(int K) {
+        K = Math.min(K, size);
         List<PlayerScore> topKScores = new ArrayList<>();
 
         //Pop to 5 Scores
-        for(int i =0;i<K;i++){
+        for (int i = 0; i < K; i++) {
             topKScores.add(pop());
         }
 
@@ -65,14 +65,14 @@ public class MaxHeapMapCache {
     }
 
 
-    private PlayerScore pop(){
-        if(size ==0){
+    private PlayerScore pop() {
+        if (size == 0) {
             throw new CacheMemoryUnderflowException();
         }
         PlayerScore playerScore = maxHeap[0];
         positions.remove(playerScore.getPlayerName());
-        PlayerScore minPlayerScore = maxHeap[size-1];
-        positions.put(minPlayerScore.getPlayerName(),0);
+        PlayerScore minPlayerScore = maxHeap[size - 1];
+        positions.put(minPlayerScore.getPlayerName(), 0);
         maxHeap[0] = minPlayerScore;
         size--;
         sink(0);
@@ -95,10 +95,9 @@ public class MaxHeapMapCache {
         }
     }
 
-    private void sink(int currentPosition){
+    private void sink(int currentPosition) {
         //implement yourself
     }
-
 
 
 }

@@ -30,7 +30,7 @@ public class FileDatabase {
         return Collections.emptyList();
     }
 
-    public void writeScores(List<PlayerScore> scores) {
+    public void appendScores(List<PlayerScore> scores) {
         try {
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(Files.newOutputStream(Paths.get(Constants.fileName))));
             scores.forEach(score -> {
@@ -48,7 +48,7 @@ public class FileDatabase {
         }
     }
 
-    public void writeScore(PlayerScore score) {
+    public void appendScore(PlayerScore score) {
         try {
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(Files.newOutputStream(Paths.get(Constants.fileName))));
             bufferedWriter.append(score.toString());
