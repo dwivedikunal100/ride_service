@@ -40,10 +40,21 @@ public class FileDatabase {
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-
             });
             logger.info("Written to file successfully");
             bufferedWriter.close();
+        } catch (Exception e) {
+            logger.severe("Error while writing to file");
+        }
+    }
+
+    public void writeScore(PlayerScore score) {
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(Files.newOutputStream(Paths.get(Constants.fileName))));
+            bufferedWriter.append(score.toString());
+            bufferedWriter.newLine();
+            bufferedWriter.close();
+            logger.info("Written to file successfully");
         } catch (Exception e) {
             logger.severe("Error while writing to file");
         }

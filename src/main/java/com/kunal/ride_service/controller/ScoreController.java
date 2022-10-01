@@ -1,7 +1,6 @@
 package com.kunal.ride_service.controller;
 
 import com.kunal.ride_service.dao.ScoreDao;
-import com.kunal.ride_service.exceptions.score.PlayerAlreadyExistsException;
 import com.kunal.ride_service.processor.ScoreProcessor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,10 +20,13 @@ public class ScoreController {
     @PostMapping(value = "/getTop5Scores")
     public ResponseEntity<String> getTop5Scores() {
         logger.info("Get Top 5 Scores API called");
-        try {
-            return ResponseEntity.ok(scoreProcessor.getTop5Scores().toString());
-        } catch (PlayerAlreadyExistsException playerAlreadyExistsException) {
-            return ResponseEntity.ok("Player already  exists");
-        }
+        return ResponseEntity.ok(scoreProcessor.getTop5Scores().toString());
+    }
+
+    @PostMapping(value = "/getTop5ScoresFromFile")
+    public ResponseEntity<String> getTop5ScoresFromFile() {
+        logger.info("Get Top 5 Scores from file API called");
+        return ResponseEntity.ok(scoreProcessor.getTop5ScoresFromFile().toString());
+
     }
 }

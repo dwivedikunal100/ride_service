@@ -15,7 +15,7 @@ public class ScoreDao {
         fileDatabase = new FileDatabase();
     }
 
-    public List<PlayerScore> getPlayerScores() {
+    public List<PlayerScore> getPlayerScoresFromFile() {
         return fileDatabase.getAllScores().stream().map(PlayerScore::new).collect(Collectors.toList());
     }
 

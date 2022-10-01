@@ -13,8 +13,17 @@ public class ScoreProcessor {
     MaxHeapMapCache maxHeapMapCache;
 
     public List<String> getTop5Scores() {
-        List<PlayerScore> scoreProcessorsList = scoreDao.getPlayerScores();
+        List<PlayerScore> scoreProcessorsList = scoreDao.getPlayerScoresFromFile();
         maxHeapMapCache = MaxHeapMapCache.getInstance();
+        scoreProcessorsList.forEach(score -> maxHeapMapCache.addScore(score));
+        //getTop5
+        return Collections.singletonList("empty");
+    }
+
+    public List<String> getTop5ScoresFromFile() {
+        maxHeapMapCache = MaxHeapMapCache.getInstance();
+        maxHeapMapCache.clear();
+        List<PlayerScore> scoreProcessorsList = scoreDao.getPlayerScoresFromFile();
         scoreProcessorsList.forEach(score -> maxHeapMapCache.addScore(score));
         //getTop5
         return Collections.singletonList("empty");
